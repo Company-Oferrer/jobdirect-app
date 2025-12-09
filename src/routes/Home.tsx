@@ -2,7 +2,9 @@ import { useMemo, useState } from 'react';
 import JobFilters from '@/components/JobFilters';
 import JobList from '@/components/JobList';
 import Pagination from '@/components/Pagination';
-import { jobs as allJobs } from '@/data/jobs';
+import LoadingSkeleton from '@/components/LoadingSkeleton';
+import EmptyState from '@/components/EmptyState';
+import { useJobs } from '@/hooks/useJobs';
 import { regions } from '@/data/regions';
 import { categories } from '@/data/categories';
 import type { Job } from '@/types/job';
@@ -15,11 +17,15 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('Todas las categorías');
   const [currentPage, setCurrentPage] = useState(1);
 
+  const { jobs: allJobs, isLoading, error } = useJobs();
+
   const handleSearch = () => {
     setCurrentPage(1);
   };
 
   const filteredJobs = useMemo(() => {
+    if (!allJobs.length) return [];
+
     const query = searchQuery.toLowerCase().trim();
 
     const result = allJobs.filter((job) => {
@@ -43,7 +49,7 @@ export default function Home() {
       (a: Job, b: Job) =>
         new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime()
     );
-  }, [searchQuery, selectedRegion, selectedCategory]);
+  }, [allJobs, searchQuery, selectedRegion, selectedCategory]);
 
   const totalPages = Math.max(1, Math.ceil(filteredJobs.length / PAGE_SIZE));
 
@@ -76,32 +82,47 @@ export default function Home() {
               selectedRegion={selectedRegion}
               selectedCategory={selectedCategory}
               onRegionChange={(value) => {
-                setSelectedRegion(value);
-                setCurrentPage(1);
+                // setSelectedRegion(value);
+                // setCurrentPage(1);
               }}
               onCategoryChange={(value) => {
-                setSelectedCategory(value);
-                setCurrentPage(1);
+                // setSelectedCategory(value);
+                // setCurrentPage(1);
               }}
             />
           </div>
 
           <div>
-            <div className="mb-3 flex items-center justify-between text-[11px] text-slate-400">
-              <span>
-                Mostrando{' '}
-                <span className="font-semibold text-slate-100">
-                  {filteredJobs.length}
-                </span>{' '}
-                ofertas
-              </span>
-            </div>
-            <JobList jobs={paginatedJobs} />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
+            {isLoading ? (
+              <div className="space-y-4">
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+              </div>
+            ) : error ? (
+              <EmptyState
+                title="Error al cargar las ofertas"
+                message={error}
+              />
+            ) : (
+              <>
+                <div className="mb-3 flex items-center justify-between text-[11px] text-slate-400">
+                  <span>
+                    Mostrando{' '}
+                    <span className="font-semibold text-slate-100">
+                      {filteredJobs.length}
+                    </span>{' '}
+                    ofertas
+                  </span>
+                </div>
+                <JobList jobs={paginatedJobs} />
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>

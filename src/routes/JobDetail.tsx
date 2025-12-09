@@ -1,13 +1,40 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { jobs } from '@/data/jobs';
+import { useJobs } from '@/hooks/useJobs';
 import Badge from '@/components/Badge';
 import EmptyState from '@/components/EmptyState';
+import LoadingSkeleton from '@/components/LoadingSkeleton';
 
 export default function JobDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { jobs, isLoading, error } = useJobs();
 
   const job = jobs.find((j) => j.id === id);
+
+  if (isLoading) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-10">
+        <LoadingSkeleton />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-10">
+        <EmptyState
+          title="Error al cargar la oferta"
+          message={error}
+        />
+        <button
+          onClick={() => navigate(-1)}
+          className="mt-4 text-xs text-primary hover:text-primary-light"
+        >
+          ← Back to results
+        </button>
+      </div>
+    );
+  }
 
   if (!job) {
     return (
