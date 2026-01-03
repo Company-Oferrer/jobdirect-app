@@ -1,4 +1,4 @@
-name: CI - Backend Validation
+name: CI - Frontend Validation
 
 on:
   pull_request:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm ci
@@ -27,3 +27,6 @@ jobs:
       - name: Run tests
         run: npm test
         continue-on-error: true  # TODO: Remover cuando tests estén implementados
+
+      - name: Build application
+        run: npm run build
