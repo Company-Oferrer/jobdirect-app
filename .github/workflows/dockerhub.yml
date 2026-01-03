@@ -56,6 +56,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:prod
             ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:${{ steps.vars.outputs.SHORT_SHA }}
