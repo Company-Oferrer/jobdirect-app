@@ -3,7 +3,7 @@ name: Build & Push Frontend to DockerHub
 # Se ejecuta cuando hay cambios en main
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
   build-and-push:
