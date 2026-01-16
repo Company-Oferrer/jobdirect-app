@@ -3,7 +3,7 @@ name: CI/CD - Auto Deploy to DEV
 on:
   push:
     branches:
-      - main
+      - master
     paths-ignore:
       - '**.md'
       - 'docs/**'
