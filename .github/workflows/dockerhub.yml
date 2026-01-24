@@ -42,13 +42,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            # Build de la imagen frontend y push al registry (QA)
+      # Build de la imagen frontend y push al registry (QA)
       - name: Build & Push Docker image (QA)
         if: github.event.inputs.ambiente == 'qa'
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
+          build-args: |
+            VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL_QA }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:qa
             ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:${{ steps.vars.outputs.SHORT_SHA }}
@@ -60,6 +62,8 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL_PROD }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:prod
             ${{ secrets.DOCKERHUB_USERNAME }}/jobdirect-app:latest
