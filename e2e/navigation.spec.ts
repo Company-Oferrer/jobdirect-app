@@ -45,14 +45,14 @@ test.describe('Navigation Flow', () => {
     await expect(page.getByText('Navigation Test Job 1')).toBeVisible();
     
     // Click on first job
-    await page.getByRole('link', { name: 'View details' }).first().click();
+    await page.getByRole('link', { name: 'Ver detalles' }).first().click();
     
     // Should be on job detail page
     await expect(page).toHaveURL('/jobs/nav-1');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Navigation Test Job 1');
     
     // Go back
-    await page.getByText(/Back to results/).click();
+    await page.getByText(/Volver a los resultados/).click();
     
     // Should be back on home
     await expect(page).toHaveURL('/');
@@ -63,14 +63,14 @@ test.describe('Navigation Flow', () => {
     await page.goto('/');
     
     // Navigate to first job
-    await page.getByRole('link', { name: 'View details' }).first().click();
+    await page.getByRole('link', { name: 'Ver detalles' }).first().click();
     await expect(page).toHaveURL('/jobs/nav-1');
     
     // Go back
     await page.goBack();
     
     // Navigate to second job
-    await page.getByRole('link', { name: 'View details' }).nth(1).click();
+    await page.getByRole('link', { name: 'Ver detalles' }).nth(1).click();
     await expect(page).toHaveURL('/jobs/nav-2');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Navigation Test Job 2');
   });
@@ -86,7 +86,7 @@ test.describe('Navigation Flow', () => {
     await page.goto('/');
     
     // Navigate to job detail
-    await page.getByRole('link', { name: 'View details' }).first().click();
+    await page.getByRole('link', { name: 'Ver detalles' }).first().click();
     await expect(page).toHaveURL('/jobs/nav-1');
     
     // Use browser back
@@ -105,7 +105,7 @@ test.describe('Navigation Flow', () => {
     await expect(page.getByText('Navigation Test Job 1')).toBeVisible();
     
     // Navigate to detail
-    await page.getByRole('link', { name: 'View details' }).first().click();
+    await page.getByRole('link', { name: 'Ver detalles' }).first().click();
     
     // Navigate back
     await page.goBack();
@@ -128,7 +128,7 @@ test.describe('404 Handling', () => {
     
     await page.goto('/jobs/does-not-exist');
     
-    await expect(page.getByText('Job not found')).toBeVisible();
+    await expect(page.getByText('Oferta no encontrada')).toBeVisible();
   });
 });
 

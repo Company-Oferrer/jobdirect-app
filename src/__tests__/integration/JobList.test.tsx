@@ -64,7 +64,7 @@ describe('JobList Component Integration', () => {
   it('each job card links to correct detail page', () => {
     render(<JobList jobs={mockJobs} />);
     
-    const links = screen.getAllByText('View details');
+    const links = screen.getAllByText('Ver detalles');
     expect(links[0]).toHaveAttribute('href', '/jobs/1');
     expect(links[1]).toHaveAttribute('href', '/jobs/2');
     expect(links[2]).toHaveAttribute('href', '/jobs/3');

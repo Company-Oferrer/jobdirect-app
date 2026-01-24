@@ -42,7 +42,7 @@ export default function JobCard({ job }: Props) {
         {job.salaryRange && (
           <p className="text-xs font-medium text-accent">
             {job.salaryRange}{' '}
-            <span className="font-normal text-slate-400">/ month</span>
+            <span className="font-normal text-slate-400">/ mes</span>
           </p>
         )}
       </div>
@@ -52,10 +52,10 @@ export default function JobCard({ job }: Props) {
           to={`/jobs/${job.id}`}
           className="rounded-xl bg-slate-800 px-3 py-1.5 text-[11px] font-semibold text-slate-100 hover:bg-primary hover:text-slate-50"
         >
-          View details
+          Ver detalles
         </Link>
         <button className="text-[11px] text-slate-400 hover:text-slate-200">
-          Save job
+          Guardar
         </button>
       </div>
     </article>

@@ -67,20 +67,20 @@ describe('JobCard Component Integration', () => {
     const jobWithoutSalary = { ...mockJob, salaryRange: undefined };
     render(<JobCard job={jobWithoutSalary} />);
     
-    expect(screen.queryByText(/\/ month/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\/ mes/)).not.toBeInTheDocument();
   });
 
   it('renders view details link with correct href', () => {
     render(<JobCard job={mockJob} />);
     
-    const link = screen.getByText('View details');
+    const link = screen.getByText('Ver detalles');
     expect(link).toHaveAttribute('href', '/jobs/test-1');
   });
 
   it('renders save job button', () => {
     render(<JobCard job={mockJob} />);
     
-    expect(screen.getByText('Save job')).toBeInTheDocument();
+    expect(screen.getByText('Guardar')).toBeInTheDocument();
   });
 
   it('formats date correctly', () => {

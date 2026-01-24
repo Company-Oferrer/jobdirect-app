@@ -76,7 +76,7 @@ test.describe('Job Detail Page', () => {
   test('should display back button', async ({ page }) => {
     await page.goto('/jobs/e2e-detail-1');
     
-    await expect(page.getByText(/Back to results/)).toBeVisible();
+    await expect(page.getByText(/Volver a los resultados/)).toBeVisible();
   });
 
   test('should navigate back when clicking back button', async ({ page }) => {
@@ -84,44 +84,44 @@ test.describe('Job Detail Page', () => {
     await page.goto('/');
     
     // Then navigate to job detail
-    await page.getByRole('link', { name: 'View details' }).first().click();
+    await page.getByRole('link', { name: 'Ver detalles' }).first().click();
     await expect(page).toHaveURL('/jobs/e2e-detail-1');
     
     // Click back button
-    await page.getByText(/Back to results/).click();
+    await page.getByText(/Volver a los resultados/).click();
     
     // Should be back on home
     await expect(page).toHaveURL('/');
   });
 
-  test('should display Apply now button', async ({ page }) => {
+  test('should display Aplicar ahora button', async ({ page }) => {
     await page.goto('/jobs/e2e-detail-1');
     
-    await expect(page.getByRole('button', { name: 'Apply now' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Aplicar ahora' })).toBeVisible();
   });
 
-  test('should display Save for later button', async ({ page }) => {
+  test('should display Guardar para más tarde button', async ({ page }) => {
     await page.goto('/jobs/e2e-detail-1');
     
-    await expect(page.getByRole('button', { name: 'Save for later' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Guardar para más tarde' })).toBeVisible();
   });
 
   test('should display role overview section', async ({ page }) => {
     await page.goto('/jobs/e2e-detail-1');
     
-    await expect(page.getByText('Role overview')).toBeVisible();
+    await expect(page.getByText('Resumen del rol')).toBeVisible();
   });
 
   test('should display responsibilities section', async ({ page }) => {
     await page.goto('/jobs/e2e-detail-1');
     
-    await expect(page.getByText('Responsibilities')).toBeVisible();
+    await expect(page.getByText('Responsabilidades')).toBeVisible();
   });
 
   test('should display requirements section', async ({ page }) => {
     await page.goto('/jobs/e2e-detail-1');
     
-    await expect(page.getByText('Requirements')).toBeVisible();
+    await expect(page.getByText('Requisitos')).toBeVisible();
   });
 });
 
@@ -138,7 +138,7 @@ test.describe('Job Detail Page - Job Not Found', () => {
     
     await page.goto('/jobs/non-existent-job');
     
-    await expect(page.getByText('Job not found')).toBeVisible();
+    await expect(page.getByText('Oferta no encontrada')).toBeVisible();
   });
 
   test('should show back button when job not found', async ({ page }) => {
@@ -152,7 +152,7 @@ test.describe('Job Detail Page - Job Not Found', () => {
     
     await page.goto('/jobs/non-existent-job');
     
-    await expect(page.getByText(/Back to results/)).toBeVisible();
+    await expect(page.getByText(/Volver a los resultados/)).toBeVisible();
   });
 });
 

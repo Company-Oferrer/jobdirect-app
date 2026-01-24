@@ -114,14 +114,14 @@ test.describe('Home Page - With Mock API', () => {
     await expect(page.getByText(/\$5,000 - \$7,000/)).toBeVisible();
   });
 
-  test('should have clickable View Details links', async ({ page }) => {
-    const viewDetailsLinks = page.getByRole('link', { name: 'View details' });
+  test('should have clickable Ver detalles links', async ({ page }) => {
+    const viewDetailsLinks = page.getByRole('link', { name: 'Ver detalles' });
     await expect(viewDetailsLinks.first()).toBeVisible();
     await expect(viewDetailsLinks.first()).toHaveAttribute('href', '/jobs/e2e-1');
   });
 
-  test('should navigate to job detail when clicking View Details', async ({ page }) => {
-    await page.getByRole('link', { name: 'View details' }).first().click();
+  test('should navigate to job detail when clicking Ver detalles', async ({ page }) => {
+    await page.getByRole('link', { name: 'Ver detalles' }).first().click();
     await expect(page).toHaveURL('/jobs/e2e-1');
   });
 });

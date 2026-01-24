@@ -72,11 +72,11 @@ describe('Home Page Integration', () => {
     });
   });
 
-  it('renders "View details" links for each job', async () => {
+  it('renders "Ver detalles" links for each job', async () => {
     render(<Home />);
 
     await waitFor(() => {
-      const viewDetailsLinks = screen.getAllByText('View details');
+      const viewDetailsLinks = screen.getAllByText('Ver detalles');
       expect(viewDetailsLinks.length).toBeGreaterThan(0);
     });
   });
@@ -85,7 +85,7 @@ describe('Home Page Integration', () => {
     render(<Home />);
 
     await waitFor(() => {
-      const firstViewDetailsLink = screen.getAllByText('View details')[0];
+      const firstViewDetailsLink = screen.getAllByText('Ver detalles')[0];
       expect(firstViewDetailsLink).toHaveAttribute('href', '/jobs/1');
     });
   });

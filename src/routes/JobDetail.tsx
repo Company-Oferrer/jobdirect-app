@@ -30,7 +30,7 @@ export default function JobDetail() {
           onClick={() => navigate(-1)}
           className="mt-4 text-xs text-primary hover:text-primary-light"
         >
-          ← Back to results
+          ← Volver a los resultados
         </button>
       </div>
     );
@@ -40,14 +40,14 @@ export default function JobDetail() {
     return (
       <div className="mx-auto max-w-3xl px-4 py-10">
         <EmptyState
-          title="Job not found"
-          message="This job may have expired or the link is incorrect."
+          title="Oferta no encontrada"
+          message="Esta oferta puede haber expirado o el enlace es incorrecto."
         />
         <button
           onClick={() => navigate(-1)}
           className="mt-4 text-xs text-primary hover:text-primary-light"
         >
-          ← Back to results
+          ← Volver a los resultados
         </button>
       </div>
     );
@@ -65,7 +65,7 @@ export default function JobDetail() {
         onClick={() => navigate(-1)}
         className="mb-4 text-xs text-slate-400 hover:text-slate-100"
       >
-        ← Back to results
+        ← Volver a los resultados
       </button>
 
       <article className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 shadow-lg shadow-slate-950/60">
@@ -92,7 +92,7 @@ export default function JobDetail() {
                 {' '}
                 ·{' '}
                 <span className="font-medium text-accent">
-                  {job.salaryRange} / month
+                  {job.salaryRange} / mes
                 </span>
               </>
             )}
@@ -100,39 +100,39 @@ export default function JobDetail() {
         </header>
 
         <section className="space-y-3 text-sm text-slate-200">
-          <h2 className="text-sm font-semibold text-slate-100">Role overview</h2>
+          <h2 className="text-sm font-semibold text-slate-100">Resumen del rol</h2>
           <p className="text-sm text-slate-300">{job.description}</p>
 
           <h3 className="mt-4 text-sm font-semibold text-slate-100">
-            Responsibilities
+            Responsabilidades
           </h3>
           <ul className="list-disc space-y-1 pl-4 text-sm text-slate-300">
-            <li>Collaborate with cross-functional teams to deliver product features.</li>
-            <li>Write clean, maintainable, and tested code.</li>
-            <li>Participate in code reviews and architecture discussions.</li>
+            <li>Colaborar con equipos multifuncionales para entregar características del producto.</li>
+            <li>Escribir código limpio, mantenible y probado.</li>
+            <li>Participar en revisiones de código y discusiones sobre arquitectura.</li>
           </ul>
 
           <h3 className="mt-4 text-sm font-semibold text-slate-100">
-            Requirements
+            Requisitos
           </h3>
           <ul className="list-disc space-y-1 pl-4 text-sm text-slate-300">
-            <li>Relevant experience in a similar role.</li>
-            <li>Strong communication and collaboration skills.</li>
-            <li>Comfortable working in remote or hybrid setups.</li>
+            <li>Experiencia relevante en un rol similar.</li>
+            <li>Habilidades de comunicación y colaboración.</li>
+            <li>Confortable trabajando en remoto o híbrido.</li>
           </ul>
         </section>
 
         <div className="mt-6 flex flex-wrap gap-3">
           <button className="rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-slate-50 shadow-sm hover:bg-primary-dark">
-            Apply now
+            Aplicar ahora
           </button>
           <button className="rounded-xl border border-slate-700 px-4 py-2 text-xs font-semibold text-slate-200 hover:border-primary/70 hover:text-primary">
-            Save for later
+            Guardar para más tarde
           </button>
         </div>
 
         <p className="mt-4 text-[11px] text-slate-500">
-          By applying you will be redirected to the employer&apos;s site or contact channel.
+          Al aplicar, serás redirigido al sitio del empleador o al canal de contacto.
         </p>
       </article>
     </section>

@@ -90,23 +90,23 @@ describe('JobDetail Page Integration', () => {
     renderWithRouter('1');
 
     await waitFor(() => {
-      expect(screen.getByText(/Back to results/)).toBeInTheDocument();
+      expect(screen.getByText(/Volver a los resultados/)).toBeInTheDocument();
     });
   });
 
-  it('renders apply now button', async () => {
+  it('renders aplicar ahora button', async () => {
     renderWithRouter('1');
 
     await waitFor(() => {
-      expect(screen.getByText('Apply now')).toBeInTheDocument();
+      expect(screen.getByText('Aplicar ahora')).toBeInTheDocument();
     });
   });
 
-  it('renders save for later button', async () => {
+  it('renders guardar para más tarde button', async () => {
     renderWithRouter('1');
 
     await waitFor(() => {
-      expect(screen.getByText('Save for later')).toBeInTheDocument();
+      expect(screen.getByText('Guardar para más tarde')).toBeInTheDocument();
     });
   });
 
@@ -114,7 +114,7 @@ describe('JobDetail Page Integration', () => {
     renderWithRouter('1');
 
     await waitFor(() => {
-      expect(screen.getByText('Role overview')).toBeInTheDocument();
+      expect(screen.getByText('Resumen del rol')).toBeInTheDocument();
     });
   });
 
@@ -122,7 +122,7 @@ describe('JobDetail Page Integration', () => {
     renderWithRouter('1');
 
     await waitFor(() => {
-      expect(screen.getByText('Responsibilities')).toBeInTheDocument();
+      expect(screen.getByText('Responsabilidades')).toBeInTheDocument();
     });
   });
 
@@ -130,7 +130,7 @@ describe('JobDetail Page Integration', () => {
     renderWithRouter('1');
 
     await waitFor(() => {
-      expect(screen.getByText('Requirements')).toBeInTheDocument();
+      expect(screen.getByText('Requisitos')).toBeInTheDocument();
     });
   });
 
@@ -149,7 +149,7 @@ describe('JobDetail Page - Job Not Found', () => {
     renderWithRouter('non-existent-id');
 
     await waitFor(() => {
-      expect(screen.getByText('Job not found')).toBeInTheDocument();
+      expect(screen.getByText('Oferta no encontrada')).toBeInTheDocument();
     });
   });
 
@@ -157,7 +157,7 @@ describe('JobDetail Page - Job Not Found', () => {
     renderWithRouter('non-existent-id');
 
     await waitFor(() => {
-      expect(screen.getByText(/Back to results/)).toBeInTheDocument();
+      expect(screen.getByText(/Volver a los resultados/)).toBeInTheDocument();
     });
   });
 });
