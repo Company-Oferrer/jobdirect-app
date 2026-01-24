@@ -26,7 +26,6 @@ jobs:
 
       - name: Run tests
         run: npm test
-        continue-on-error: true  # TODO: Remover cuando tests estén implementados
 
       - name: Build application
         run: npm run build
