@@ -13,3 +13,11 @@ export async function fetchJobs(): Promise<Job[]> {
   return data;
 }
 
+export async function seedJobs(): Promise<void> {
+  const response = await fetch(`/api/seed`, { method: 'POST' });
+
+  if (!response.ok) {
+    throw new Error(`Error al ejecutar seed: ${response.statusText}`);
+  }
+}
+
