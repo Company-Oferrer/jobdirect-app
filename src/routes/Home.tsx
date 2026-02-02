@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import JobFilters from '@/components/JobFilters';
 import JobList from '@/components/JobList';
 import Pagination from '@/components/Pagination';
 import LoadingSkeleton from '@/components/LoadingSkeleton';
 import EmptyState from '@/components/EmptyState';
 import { useJobs } from '@/hooks/useJobs';
+import { seedJobs } from '@/services/api';
 import { regions } from '@/data/regions';
 import { categories } from '@/data/categories';
 import type { Job } from '@/types/job';
@@ -16,11 +17,33 @@ export default function Home() {
   const [selectedRegion, setSelectedRegion] = useState('Todas las regiones');
   const [selectedCategory, setSelectedCategory] = useState('Todas las categorías');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isSeeding, setIsSeeding] = useState(false);
+  const [seedMessage, setSeedMessage] = useState<string | null>(null);
 
-  const { jobs: allJobs, isLoading, error } = useJobs();
+  const { jobs: allJobs, isLoading, error, refetch } = useJobs();
+
+  useEffect(() => {
+    const flag = localStorage.getItem('isAdmin');
+    setIsAdmin(flag === 'true');
+  }, []);
 
   const handleSearch = () => {
     setCurrentPage(1);
+  };
+
+  const handleSeed = async () => {
+    try {
+      setSeedMessage(null);
+      setIsSeeding(true);
+      await seedJobs();
+      await refetch();
+      setSeedMessage('Seed ejecutado correctamente.');
+    } catch (err) {
+      setSeedMessage(err instanceof Error ? err.message : 'Error al ejecutar seed.');
+    } finally {
+      setIsSeeding(false);
+    }
   };
 
   const filteredJobs = useMemo(() => {
@@ -106,14 +129,29 @@ export default function Home() {
               />
             ) : (
               <>
-                <div className="mb-3 flex items-center justify-between text-[11px] text-slate-400">
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400">
                   <span>
-                    Mostrando{' '}
+                    Mostrando{" "}
                     <span className="font-semibold text-slate-100">
                       {filteredJobs.length}
-                    </span>{' '}
+                    </span>{" "}
                     ofertas
                   </span>
+                  {isAdmin && (
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={handleSeed}
+                        disabled={isSeeding}
+                        className="rounded-md border border-slate-600/60 px-3 py-1 text-[11px] font-medium text-slate-100 hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {isSeeding ? 'Ejecutando seed...' : 'Seed (admin)'}
+                      </button>
+                      {seedMessage && (
+                        <span className="text-[11px] text-slate-300">{seedMessage}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <JobList jobs={paginatedJobs} />
                 <Pagination
