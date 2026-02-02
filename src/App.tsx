@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <Navbar />
+      <h1>Hello</h1>
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
