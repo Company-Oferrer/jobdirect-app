@@ -97,6 +97,21 @@ export default function Home() {
           </p>
         </div>
 
+        {isAdmin && (
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleSeed}
+              disabled={isSeeding}
+              className="rounded-md border border-slate-600/60 px-3 py-1 text-[11px] font-medium text-slate-100 hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isSeeding ? 'Ejecutando seed...' : 'Seed (admin)'}
+            </button>
+            {seedMessage && (
+              <span className="text-[11px] text-slate-300">{seedMessage}</span>
+            )}
+          </div>
+        )}
         <div className="mt-6 grid gap-6 md:grid-cols-[260px,1fr]">
           <div className="md:sticky md:top-20">
             <JobFilters
@@ -137,21 +152,6 @@ export default function Home() {
                     </span>{" "}
                     ofertas
                   </span>
-                  {isAdmin && (
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handleSeed}
-                        disabled={isSeeding}
-                        className="rounded-md border border-slate-600/60 px-3 py-1 text-[11px] font-medium text-slate-100 hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {isSeeding ? 'Ejecutando seed...' : 'Seed (admin)'}
-                      </button>
-                      {seedMessage && (
-                        <span className="text-[11px] text-slate-300">{seedMessage}</span>
-                      )}
-                    </div>
-                  )}
                 </div>
                 <JobList jobs={paginatedJobs} />
                 <Pagination
